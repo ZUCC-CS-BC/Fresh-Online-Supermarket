@@ -1,0 +1,163 @@
+create table Commodity_evaluation_form 
+(
+   user_id              varchar(50)                    not null,
+   Product_id           varchar(50)                    not null,
+   form_id              varchar(50)                    not null,
+   Review_user_number_id varchar(50)                    not null,
+   comment_content      varchar(500)                   not null,
+   comment_date         date                           not null,
+   comment_star         varchar(50)                    not null,
+   comment_picture      long binary                    null,
+   constraint PK_COMMODITY_EVALUATION_FORM primary key clustered (user_id, Product_id)
+);
+
+create table Commodity_order 
+(
+   order_id             varchar(50)                    not null,
+   Use_user_id          varchar(50)                    null,
+   user_id              varchar(50)                    not null,
+   order_originalamount double                         not null,
+   order_settlementamount double                         not null,
+   coupon_id            varchar(50)                    not null,
+   arrival_time         timestamp                      not null,
+   address_no           varchar(50)                    not null,
+   order_status         integer                        not null,
+   constraint PK_COMMODITY_ORDER primary key (order_id)
+);
+
+create table Delivery_address 
+(
+   address_table_id     varchar(50)                    not null,
+   user_id              varchar(50)                    null,
+   address_no           varchar(50)                    not null,
+   province             char(1)                        not null,
+   city                 char(1)                        not null,
+   area                 char(1)                        not null,
+   address_id           varchar(100)                   not null,
+   contact_name         varchar(50)                    not null,
+   contact_telphone     varchar(50)                    not null,
+   constraint PK_DELIVERY_ADDRESS primary key (address_table_id)
+);
+
+create table Fresh_category 
+(
+   Category_id          varchar(50)                    not null,
+   Product_id           varchar(50)                    null,
+   Category_name        varchar(50)                    not null,
+   Category_dcp         varchar(100)                   not null,
+   constraint PK_FRESH_CATEGORY primary key (Category_id)
+);
+
+create table Full_Fold 
+(
+   full_id              varchar(50)                    not null,
+   full_content         varchar(200)                   not null,
+   full_Applicable_amount varchar(500)                   not null,
+   full_discount        double                         not null,
+   full_startdate       date                           not null,
+   full_enddate         date                           not null,
+   constraint PK_FULL_FOLD primary key (full_id)
+);
+
+create table Full_and_product 
+(
+   Product_id           varchar(50)                    not null,
+   full_id              varchar(50)                    not null,
+   association_table_id varchar(50)                    not null,
+   full_startdate       date                           not null,
+   full_enddate         date                           not null,
+   constraint PK_FULL_AND_PRODUCT primary key clustered (Product_id, full_id)
+);
+
+create table Limited_time 
+(
+   promotion_id         varchar(50)                    not null,
+   Product_id           varchar(50)                    null,
+   promotion_price      double                         not null,
+   promotion_number     double                         not null,
+   promotion_startdate  date                           not null,
+   promotion_enddate    date                           not null,
+   constraint PK_LIMITED_TIME primary key (promotion_id)
+);
+
+create table Order_details 
+(
+   order_id             varchar(50)                    not null,
+   Product_id           varchar(50)                    not null,
+   order_details_table  varchar(50)                    not null,
+   Product_number       float                          null,
+   Product_price        float                          null,
+   discount             float                          null,
+   full_id              integer                        null,
+   constraint PK_ORDER_DETAILS primary key clustered (order_id, Product_id)
+);
+
+create table Product_Recipe_Recommendation_Table 
+(
+   Pro_Product_id       varchar(50)                    not null,
+   Rec_Recipe_id        varchar(50)                    not null,
+   table_id             varchar(50)                    not null,
+   Recipe_id            varchar(50)                    not null,
+   Product_id           varchar(50)                    not null,
+   table_description    varchar(500)                   null,
+   constraint PK_PRODUCT_RECIPE_RECOMMENDATI primary key clustered (Pro_Product_id, Rec_Recipe_id)
+);
+
+create table Product_information 
+(
+   Product_id           varchar(50)                    not null,
+   Product_name         varchar(50)                    not null,
+   Product_price        double                         not null,
+   Product_vipprice     double                         not null,
+   Product_number       integer                        not null,
+   Product_specification varchar(50)                    not null,
+   Product_details      varchar(100)                   not null,
+   constraint PK_PRODUCT_INFORMATION primary key (Product_id)
+);
+
+create table Recipe_information 
+(
+   Recipe_id            varchar(50)                    not null,
+   Recipe_name          varchar(50)                    not null,
+   Recipe_materials     varchar(200)                   not null,
+   Recipe_step          varchar(200)                   not null,
+   Recipe_picture       long binary                    not null,
+   constraint PK_RECIPE_INFORMATION primary key (Recipe_id)
+);
+
+create table User_Information 
+(
+   user_id              varchar(50)                    not null,
+   user_name            varchar(50)                    not null,
+   user_gender          varchar(50)                    not null,
+   user_pwd             varchar(50)                    not null,
+   user_telphone        varchar(50)                    not null,
+   user_webmail         varchar(50)                    not null,
+   user_city            integer                        not null,
+   user_registration_time date                           not null,
+   member_or_not        varchar(50)                    not null,
+   member_endday        date                           not null,
+   constraint PK_USER_INFORMATION primary key (user_id)
+);
+
+create table coupon 
+(
+   coupon_id            varchar(50)                    not null,
+   order_id             varchar(50)                    null,
+   coupon_content       varchar(200)                   not null,
+   coupon_Applicable_amount double                         not null,
+   coupon_Relief_amount double                         not null,
+   coupon_startdate     date                           not null,
+   coupon_enddate       date                           not null,
+   constraint PK_COUPON primary key (coupon_id)
+);
+
+create table purchase 
+(
+   purchase_form_id     varchar(50)                    not null,
+   user_id              varchar(50)                    null,
+   ingredient_number_no varchar(50)                    not null,
+   Product_number       double                         not null,
+   purchase_status      varchar(50)                    not null,
+   constraint PK_PURCHASE primary key (purchase_form_id)
+);

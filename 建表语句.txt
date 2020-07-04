@@ -1,0 +1,150 @@
+CREATE TABLE 'Fresh_category'(
+	'Category_id' VARCHAR(50) NOT NULL,
+	'Category_name' VARCHAR(50) NOT NULL,
+	'Category_dcp' VARCHAR(100) NOT NULL,
+	PRIMARY KEY('Category_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'Product_information'(
+	'Product_id' VARCHAR(50) NOT NULL,
+	'Product_name' VARCHAR(50) NOT NULL,
+	'Product_price' DOUBLE NOT NULL,
+	'Product_vipprice' DOUBLE NOT NULL,
+	'Product_number' INTEGER NOT NULL,
+	'Product_specification' VARCHAR(50) NOT NULL,
+	'Product_details' VARCHAR(100) NOT NULL,
+	PRIMARY KEY('Product_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'Recipe_information'(
+	'Recipe_id' VARCHAR(50) NOT NULL,
+	'Recipe_name' VARCHAR(50) NOT NULL,
+	'Recipe_materials' VARCHAR(200) NOT NULL,
+	'Recipe_step' VARCHAR(200) NOT NULL,
+/*	'Recipe_picture' image NOT NULL,*/
+	PRIMARY KEY('Recipe_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'Product_Recipe_Recommendation_Table'(
+	'table_id' VARCHAR(50) NOT NULL,
+	'Product_name' VARCHAR(50) NOT NULL,
+	'Recipe_id' VARCHAR(50) NOT NULL,
+	'Product_id' VARCHAR(50) NOT NULL,
+	'table_description' VARCHAR(200) NOT NULL,
+	PRIMARY KEY('table_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'Commodity_evaluation_form'(
+	'form_id' VARCHAR(50) NOT NULL,
+	'Product_id' VARCHAR(50) NOT NULL,
+	'Review_user_number_id' VARCHAR(50) NOT NULL,
+	'comment_content' VARCHAR(50) NOT NULL,
+	'comment_date' datetime DEFAULT NOT NULL,
+	'comment_star' VARCHAR(20) NOT NULL,
+/*	'comment_picture' image NOT NULL,*/
+	PRIMARY KEY('form_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'coupon'(
+	'coupon_id' VARCHAR(50) NOT NULL,
+	'coupon_content' VARCHAR(200) NOT NULL,
+	'coupon_Applicable_amount' DOUBLE NOT NULL,
+	'coupon_Relief_amount' DOUBLE NOT NULL,
+	'coupon_startdate' datetime DEFAULT NOT NULL,
+	'coupon_enddate' datetime DEFAULT NOT NULL,
+	PRIMARY KEY('coupon_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'Full_Fold'(
+	'full_id' VARCHAR(50) NOT NULL,
+	'full_content' VARCHAR(200) NOT NULL,
+	'full_Applicable_amount' VARCHAR(500) NOT NULL,
+	'full_discount' DOUBLE NOT NULL,
+	'full_startdate' datetime DEFAULT NOT NULL,
+	'full_enddate' datetime DEFAULT NOT NULL,
+	PRIMARY KEY('full_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'Full_and_product'(
+	'association_table_id' VARCHAR(50) NOT NULL,
+	'full_id' VARCHAR(50) NOT NULL,
+	'Product_id' VARCHAR(50) NOT NULL,
+	'full_startdate' datetime DEFAULT NOT NULL,
+	'full_enddate' datetime DEFAULT NOT NULL,
+	PRIMARY KEY('association_table_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'Limited_time'(
+	'promotion_id' VARCHAR(50) NOT NULL,
+	'Product_id' VARCHAR(50) NOT NULL,
+	'promotion_price' DOUBLE NOT NULL,
+	'promotion_number' DOUBLE NOT NULL,
+	'promotion_startdate' datetime DEFAULT NOT NULL,
+	'promotion_enddate' datetime DEFAULT NOT NULL,
+	PRIMARY KEY('promotion_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'User_Information'(
+	'user_id' VARCHAR(50) NOT NULL,
+	'user_name' VARCHAR(50) NOT NULL,
+	'user_gender' VARCHAR(50) NOT NULL,
+	'user_pwd' VARCHAR(50) NOT NULL,
+	'user_telphone' VARCHAR(50) DEFAULT NOT NULL,
+	'user_webmail' VARCHAR(50) DEFAULT NOT NULL,
+	'user_city' INTEGER NOT NULL,
+	'user_registration_time' datetime DEFAULT NOT NULL,
+	'member_or_not' VARCHAR(50) NOT NULL,
+	'member_endday' datetime DEFAULT NOT NULL,
+	PRIMARY KEY('user_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'Delivery_address'(
+	'address_table_id' VARCHAR(50) NOT NULL,
+	'address_no' VARCHAR(50) NOT NULL,
+	'user_id' VARCHAR(50) NOT NULL,
+	'province' CHAR NOT NULL,
+	'city' CHAR NOT NULL,
+	'area' CHAR NOT NULL,
+	'address_id' VARCHAR(100) NOT NULL,
+	'contact_name' VARCHAR(50) NOT NULL,
+	'contact_telphone' VARCHAR(50) NOT NULL,
+	PRIMARY KEY('address_table_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'Commodity_order'(
+	'order_id' VARCHAR(50) NOT NULL,
+	'user_id' VARCHAR(50) NOT NULL,
+	'order_originalamount' DOUBLE NOT NULL,
+	'order_settlementamount' DOUBLE NOT NULL,
+	'coupon_id' VARCHAR(50) NOT NULL,
+	'arrival_time'datetime DEFAULT NOT NULL,
+	'address_no' VARCHAR(50) NOT NULL,
+	'order_status' INTEGER NOT NULL,
+	PRIMARY KEY('order_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'Order_details'(
+	'order_details_table' VARCHAR(50) NOT NULL,
+	'order_id' VARCHAR(50) NOT NULL,
+	'Product_id' VARCHAR(50) NOT NULL,
+	'Product_number' VARCHAR(50) NOT NULL,
+	'Product_price' FLOAT NOT NULL,
+	'discount' FLOAT NOT NULL,
+	'full_id' VARCHAR(50) NOT NULL,
+	PRIMARY KEY('order_details_table')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'purchase'(
+	'purchase_form_id' VARCHAR(50) NOT NULL,
+	'ingredient_number_no' VARCHAR(50) NOT NULL,
+	'Product_number' DOUBLE NOT NULL,
+	'purchase_status' VARCHAR(50) NOT NULL,
+	PRIMARY KEY('order_details_table')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE 'admin'(
+	'admin_id' VARCHAR(50) NOT NULL,
+	'admin_name' VARCHAR(50) NOT NULL,
+	'admin_pwd' VARCHAR(50) NOT NULL,
+	PRIMARY KEY('admin_id')
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
